@@ -1,0 +1,14 @@
+[build-system]
+requires = ["setuptools", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mylogger"
+version = "0.1.0"
+authors = [{ name = "Sven Upgang", email = "[email protected]" }]
+description = "A wrapper for python logging to be reused in private projects"
+readme = "README.md"
+license = { file = "LICENSE" }
+dependencies = [
+    # List of dependencies
+]
