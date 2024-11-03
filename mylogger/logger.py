@@ -6,28 +6,50 @@ import os
 from typing import List
 
 from .utils import check_and_create_directory
-from .configuration import LoggerConfig
+from .configuration import LoggerConfig, get_logger_config
 
 # Init root logger (once at first import)
 root_logger = logging.getLogger("")
 root_logger.setLevel(logging.DEBUG)  # Set to DEBUG to see all messages
 
+DEFAULT_LOGGER_NAME = "Unnamed Logger"
 
-def get_logger(
-    name: str = "UnnamedLogger",
-    logger_config: LoggerConfig | None = None,
+
+def get_default_logger(
+    name: str = DEFAULT_LOGGER_NAME,
 ):
     """
-    Wrapper for logging in python to create logging according to a given configuration
+    Returns a logger from python's logging module with a specific configuration
+    """
+
+    logger_config = LoggerConfig()
+    return get_logger_by_config(name, logger_config)
+
+
+def get_logger(name: str = DEFAULT_LOGGER_NAME, logger_config_path: str | None = None):
+    """
+    Returns a logger from python's logging module which
+    can be configured through a config file
+    """
+
+    if logger_config_path is None:
+        return get_default_logger()
+    else:
+        logger_config = get_logger_config(logger_config_path)
+        return get_logger_by_config(name, logger_config)
+
+
+def get_logger_by_config(
+    name: str,
+    logger_config: LoggerConfig,
+):
+    """
+    Returns logger from logging module with a given configuration
     """
 
     # Create a new logger
     new_logger = logging.getLogger(name)
     handler_list: List[logging.Handler] = []
-
-    # Create logger config if not provided
-    if logger_config is None:
-        logger_config = LoggerConfig()
 
     formatter = logging.Formatter(
         fmt=logger_config.output_format, datefmt=logger_config.date_format
