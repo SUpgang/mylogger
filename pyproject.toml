@@ -14,6 +14,5 @@ dependencies = [
 ]
 requires-python = ">=3.13"
 
-[tool.setuptools]
-package-dir = { "" = "mylogger" } # Assuming your module is inside 'src/' folder
-packages = ["mylogger"]
+[tool.setuptools.packages.find]
+where = ["mylogger"]
