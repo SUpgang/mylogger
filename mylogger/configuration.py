@@ -9,7 +9,7 @@ FILE_DEFAULT_LEVEL = "ERROR"
 
 OUTPUT_FORMAT_DEFAULT = "[%(asctime)s] %(name)-15s [%(levelname)-7s]: %(message)s"
 DATE_FORMAT_DEFAULT = "%Y/%m/%d %H:%M:%S"
-FILE_PATH_DEFAULT = "./"
+FILE_PATH_DEFAULT = "./logs/log.txt"
 
 
 @dataclass

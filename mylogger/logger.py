@@ -1,6 +1,7 @@
 """Provides a simple logger and the setup methods"""
 
 import logging
+import os
 
 from typing import List
 
@@ -13,8 +14,8 @@ root_logger.setLevel(logging.DEBUG)  # Set to DEBUG to see all messages
 
 
 def get_logger(
-    name: str,
-    logger_config: LoggerConfig,
+    name: str = "UnnamedLogger",
+    logger_config: LoggerConfig | None = None,
 ):
     """
     Wrapper for logging in python to create logging according to a given configuration
@@ -23,6 +24,10 @@ def get_logger(
     # Create a new logger
     new_logger = logging.getLogger(name)
     handler_list: List[logging.Handler] = []
+
+    # Create logger config if not provided
+    if logger_config is None:
+        logger_config = LoggerConfig()
 
     formatter = logging.Formatter(
         fmt=logger_config.output_format, datefmt=logger_config.date_format
@@ -42,8 +47,10 @@ def get_logger(
             raise ValueError("File path cannot be None")
 
         file_path = logger_config.file_path
+        dir_path = os.path.dirname(file_path)
+
         # Create folder if it does not exist
-        check_and_create_directory(file_path)
+        check_and_create_directory(dir_path)
 
         if logger_config.file_level is None:
             raise ValueError("File level cannot be None")
