@@ -17,7 +17,7 @@ DEFAULT_LOGGER_NAME = "Unnamed Logger"
 
 def get_default_logger(
     name: str = DEFAULT_LOGGER_NAME,
-):
+) -> logging.Logger:
     """
     Returns a logger from python's logging module with a specific configuration
     """
@@ -26,7 +26,9 @@ def get_default_logger(
     return get_logger_by_config(name, logger_config)
 
 
-def get_logger(name: str = DEFAULT_LOGGER_NAME, logger_config_path: str | None = None):
+def get_logger(
+    name: str = DEFAULT_LOGGER_NAME, logger_config_path: str | None = None
+) -> logging.Logger:
     """
     Returns a logger from python's logging module which
     can be configured through a config file
@@ -42,7 +44,7 @@ def get_logger(name: str = DEFAULT_LOGGER_NAME, logger_config_path: str | None =
 def get_logger_by_config(
     name: str,
     logger_config: LoggerConfig,
-):
+) -> logging.Logger:
     """
     Returns logger from logging module with a given configuration
     """
