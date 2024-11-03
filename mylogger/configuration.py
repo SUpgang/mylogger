@@ -62,7 +62,7 @@ def get_logger_config(path: None | str = None) -> LoggerConfig:
             console_level = None
 
         # section file
-        file_path = cfg_parser.get(section="file", option="path", fallback=None)
+        file_path = cfg_parser.get(section="file", option="filepath", fallback=None)
         file_level_input = cfg_parser.get(section="file", option="level", fallback=None)
         if file_level_input is not None:
             file_level = getLevelNamesMapping()[file_level_input.upper()]

@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "mylogger"
-version = "0.1.1"
+version = "0.1.2"
 authors = [{ name = "Sven Upgang" }]
 description = "A wrapper for python logging to be reused in private projects"
 readme = "README.md"
