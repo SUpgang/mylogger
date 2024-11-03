@@ -12,3 +12,8 @@ license = { file = "LICENSE" }
 dependencies = [
     # List of dependencies
 ]
+requires-python = ">=3.13"
+
+[tool.setuptools]
+package-dir = { "" = "mylogger" } # Assuming your module is inside 'src/' folder
+packages = ["mylogger"]
